@@ -1,19 +1,19 @@
-# 類義語のベクトルを取得し, 2次元のグラフにプロットする
+## 類義語のベクトルを取得し, 2次元のグラフにプロットする
 
-## ライブラリをインポートする
+### ライブラリをインポートする
 ```python
 from gensim.models import word2vec
 from sklearn.decomposition import PCA #主成分分析器
 import matplotlib.pyplot as plt
 ```
 
-## モデルのPath設定&読み込み
+### モデルのPath設定&読み込み
 ```python
 model_path = 'wiki.model'
 model = word2vec.Word2Vec.load(model_path)
 ```
 
-## プロットする類義語の取得
+### プロットする類義語の取得
 ```python
 item = model.wv.most_similar(target_word,topn=get_num)
 data = [] #類義語の分散表現を格納
@@ -26,14 +26,14 @@ for i in item:
     data.append(model.wv[i[0]])
 ```
 
-## 主成分分析を行って次元を圧縮する
+### 主成分分析を行って次元を圧縮する
 ```python
 pca = PCA(n_components=2)
 pca.fit(data)
 data_pca= pca.transform(data)
 ```
 
-## 類義語のプロット
+### 類義語のプロット
 ```python
 #プロットの準備
 fig=plt.figure(figsize=(10,6),facecolor='w')
